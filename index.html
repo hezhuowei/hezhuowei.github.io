@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Harold's blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="https://hezhuowei.github.io/index.html">
 <meta property="og:site_name" content="Harold's blog">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Harold's blog">
@@ -48,18 +48,93 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hezhuowei.github.io"></form>
       </div>
     </div>
   </div>
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-SuperSU替代Kingroot" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/03/SuperSU替代Kingroot/" class="article-date">
+  <time datetime="2017-02-03T09:42:51.000Z" itemprop="datePublished">2017-02-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/03/SuperSU替代Kingroot/">SuperSU替代Kingroot</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="铲除顽强的-Kingroot-并替换成-SuperSU"><a href="#铲除顽强的-Kingroot-并替换成-SuperSU" class="headerlink" title="铲除顽强的 Kingroot 并替换成 SuperSU"></a>铲除顽强的 Kingroot 并替换成 SuperSU</h3><p>在我写这之前，supersu me是已经用不了了，我也不知道为什么（<del>魔高一尺，道高一丈？</del>）</p>
+<hr>
+<p>Kingroot是个好东西，能成功root很多设备，不过也有很多令人不爽之处，这些就不细说了</p>
+<h6 id="先列出需要的条件or工具："><a href="#先列出需要的条件or工具：" class="headerlink" title="先列出需要的条件or工具："></a>先列出需要的条件or工具：</h6><h3 id="下载："><a href="#下载：" class="headerlink" title="下载："></a>下载：<a href="/2017/02/03/SuperSU替代Kingroot/hello.zip" title="hello.zip">hello.zip</a></h3><pre><code>1. 你的设备成功用kingroot成功获取root
+2. 手机上 准备 版本对应的`superSU.apk`+`su`二进制文件 和 `x—plore.apk`（可以用我上面hello.zip提供的）
+{% asset_link hello.zip hello.zip %}
+3. 电脑端 准备 adb工具
+</code></pre><hr>
+<h6 id="小白引导（老司机可以直接略过）"><a href="#小白引导（老司机可以直接略过）" class="headerlink" title="小白引导（老司机可以直接略过）"></a>小白引导（老司机可以直接略过）</h6><pre><code>下载我共享的文件，解压到d盘，
+确保adb.exe位于d：/hello/adb.exe
+插上usb，把hello文件夹复制到你的手机里面
+然后手机上打开hello文件夹安装里面的 SuperSU 和 x—plore（其实就是个文件管理器，可以用re文件管理器 代替）
+打开x—plore，设置成 “超级用户+挂载可写”，如果这时候询问root权限，点允许。
+</code></pre><hr>
+<h4 id="adb-shell连接手机"><a href="#adb-shell连接手机" class="headerlink" title="adb shell连接手机"></a>adb shell连接手机</h4><p>手机打开usb调试，usb插上电脑（记得电脑上关掉那些什么360手机助手，豌豆荚之类的管理软件，最好打开任务管理器看看有没有adb.exe之类的进程，结束它）</p>
+<p>win+r键 输入 “ cmd “ 进入cmd.exe<br>下面的操作都是在这个终端里面进行了</p>
+<p><code>D:</code><br><code>cd hello</code><br><code>adb shell</code></p>
+<p>这时候已经shell进手机,继续在cmd里面输入<br><code>su</code></p>
+<p>这时候如果手机上弹框问你拿root权限，你点yes就行了。<br><code>cd /system/xbin</code><br><code>lsattr su</code></p>
+<p>这时候，我这边的终端显示的是:<br>“lsattr su”<br>“—–ia-A—- su”<br>这说明什么？说明kingroot给su文件加了i、a、A、这三个属性，正常应该是显示“————-su”，这也是我们用了root权限也无法修改su文件的原因，我们看看这些属性有什么用</p>
+<pre><code>A Don&apos;t track atime         //即Atime，告诉系统不要修改对这个文件的最后访问时间。
+a Append mode only          //即Append Only，系统只允许在这个文件之后追加数据，不允许任何进程覆盖或截断这个文件。
+c Enable compress
+D Write dir contents synchronously
+d Don&apos;t backup with dump
+i Cannot be modified (immutable)    //：即Immutable，系统不允许对这个文件进行任何的修改。
+j Write all data to journal first
+s Zero disk storage when deleted
+S Write synchronously
+t Disable tail-merging of partial blocks with other files
+u Allow file to be undeleted
+-R Recurse
+-v VER Set version/generation number 
+</code></pre><h1 id="那么现在重点来了，kingroot-给-su文件锁了什么属性，我们就解开什么属性"><a href="#那么现在重点来了，kingroot-给-su文件锁了什么属性，我们就解开什么属性" class="headerlink" title="那么现在重点来了，kingroot 给 su文件锁了什么属性，我们就解开什么属性"></a>那么现在重点来了，kingroot 给 su文件锁了什么属性，我们就解开什么属性</h1><p>以我的文件为例显示 “—–ia-A—- su” 那就取消  i、a、A：<br><code>chattr -i su</code><br><code>chattr -a su</code><br><code>chattr -A su</code><br>当然你也可以一个命令解决<br><code>chattr -iaA su</code> </p>
+<p>如果你执行 “lsattr su” 显示的是”—–uia-A—- su”，那就：</p>
+<p><code>chattr -u su</code><br><code>chattr -i su</code><br><code>chattr -a su</code><br><code>chattr -A su</code></p>
+<hr>
+<h3 id="剩下的就很简单了"><a href="#剩下的就很简单了" class="headerlink" title="剩下的就很简单了"></a>剩下的就很简单了</h3><p> 手机打开文件管理器，把hello文件夹下面的su文件替换system/xbin下su文件（root权限下复制替换）<br> 然后点开SuperSU，更新二进制文件（ps：其实就是更新su文件），然后就会显示更新成功。<br> 现在你已经成功替换掉kingroot了，可以到system/app下删掉kingroot（最好早点删，防止它背后搞什么小动作。）</p>
+<h1 id="到这里就结束了。"><a href="#到这里就结束了。" class="headerlink" title="到这里就结束了。"></a>到这里就结束了。</h1><p>现在你可以删掉你电脑和手机上的hello文件</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hezhuowei.github.io/2017/02/03/SuperSU替代Kingroot/" data-id="ciypnlzx60001hipzcuukt9la" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -96,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/02/hello-world/" data-id="ciypmb0ug0000dppzk0k7ovci" class="article-share-link">Share</a>
+      <a data-url="https://hezhuowei.github.io/2017/02/02/hello-world/" data-id="ciypnlzx30000hipzhhqo9cm3" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -131,9 +206,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/02/03/SuperSU替代Kingroot/">SuperSU替代Kingroot</a>
+          </li>
         
           <li>
             <a href="/2017/02/02/hello-world/">Hello World</a>
@@ -152,7 +231,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 Harold_962<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
