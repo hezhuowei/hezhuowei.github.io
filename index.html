@@ -61,6 +61,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-shell-snake-game" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/20/shell-snake-game/" class="article-date">
+  <time datetime="2017-03-20T15:11:35.000Z" itemprop="datePublished">2017-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/20/shell-snake-game/">纯shell写的贪吃蛇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="不到两百行的贪吃蛇"><a href="#不到两百行的贪吃蛇" class="headerlink" title="不到两百行的贪吃蛇"></a>不到两百行的贪吃蛇</h2><p>纯bash写的，有点蛋疼就是bash仅支持一维数组，所以每个蛇身像素的xy坐标都是模拟的二维数组表示。</p>
+<p>还有一个问题就是bash的变量在函数里面声明，在函数外面也可以访问和修改，工具无好坏之分，主要看怎样去利用。</p>
+<p>每次调用new_food仅仅只是刷新里面food_xy的值，然后什么时候要用到就直接读取出来，其实更规范的写法应该是new_food外面定义个food_xy,然后调用new_food时候把值返回给food_xy。<br>还是怎么方便怎么写吧。</p>
+<p>过于简陋，轻点喷。</p>
+<p>[github地址]<br>(<a href="https://github.com/hezhuowei/SnakeGame_bash" target="_blank" rel="external">https://github.com/hezhuowei/SnakeGame_bash</a>)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hezhuowei.github.io/2017/03/20/shell-snake-game/" data-id="cj0i92crv0002pdpzmwbizi3w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-SuperSU替代Kingroot" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/02/03/SuperSU替代Kingroot/" class="article-date">
@@ -125,7 +166,7 @@ u Allow file to be undeleted
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hezhuowei.github.io/2017/02/03/SuperSU替代Kingroot/" data-id="ciypqf20300007ppz03555t3b" class="article-share-link">Share</a>
+      <a data-url="https://hezhuowei.github.io/2017/02/03/SuperSU替代Kingroot/" data-id="cj0i92crp0000pdpzztaiyyjs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -170,7 +211,7 @@ u Allow file to be undeleted
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hezhuowei.github.io/2017/02/02/hello-world/" data-id="ciypqf20700017ppzxj2ckktp" class="article-share-link">Share</a>
+      <a data-url="https://hezhuowei.github.io/2017/02/02/hello-world/" data-id="cj0i92crt0001pdpz26e6tew0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -197,7 +238,7 @@ u Allow file to be undeleted
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
     </div>
   </div>
 
@@ -208,6 +249,10 @@ u Allow file to be undeleted
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/03/20/shell-snake-game/">纯shell写的贪吃蛇</a>
+          </li>
         
           <li>
             <a href="/2017/02/03/SuperSU替代Kingroot/">SuperSU替代Kingroot</a>
